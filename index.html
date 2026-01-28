@@ -7,8 +7,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Diario Comida">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><text y='75' font-size='70' fill='%23fff' font-family='system-ui'>🍽️</text></svg>">
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRGlhcmlvIEFsaW1lbnRpY2lvIiwic2hvcnRfbmFtZSI6IkRpYXJpbyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjRkFGQUZBIiwidGhlbWVfY29sb3IiOiIjMDAwMDAwIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCclM0UlM0NyZWN0IGZpbGw9JyUyMzAwMCcgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnLyUzRSUzQ3RleHQgeT0nNzUnIGZvbnQtc2l6ZT0nNzAnIGZpbGw9JyUyM2ZmZicgZm9udC1mYW1pbHk9J3N5c3RlbS11aSclM0UlRjAlOUYlOEQlQkQlRUYlQjglOEYlM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
     <title>Mi Diario Alimenticio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -24,7 +22,6 @@
             --color-tertiary: #999999;
             --color-border: #E5E5E5;
             --color-hover: #F5F5F5;
-            --color-accent: #000000;
         }
 
         * {
@@ -54,7 +51,6 @@
         header {
             text-align: center;
             margin-bottom: 48px;
-            animation: fadeInDown 0.6s ease;
         }
 
         h1 {
@@ -69,7 +65,6 @@
             font-size: 0.875rem;
             color: var(--color-secondary);
             font-weight: 400;
-            letter-spacing: 0.01em;
         }
 
         .week-selector {
@@ -78,7 +73,6 @@
             margin-bottom: 32px;
             overflow-x: auto;
             padding: 4px;
-            animation: fadeIn 0.6s ease 0.1s backwards;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -100,7 +94,6 @@
             font-size: 0.875rem;
             color: var(--color-secondary);
             -webkit-appearance: none;
-            -webkit-touch-callout: none;
             touch-action: manipulation;
         }
 
@@ -115,12 +108,21 @@
             border-color: var(--color-primary);
         }
 
+        .day-label {
+            font-weight: 600;
+        }
+
+        .day-date {
+            font-size: 0.75rem;
+            margin-top: 2px;
+            opacity: 0.7;
+        }
+
         .meals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
-            animation: fadeIn 0.6s ease 0.2s backwards;
         }
 
         .meal-card {
@@ -155,7 +157,6 @@
             font-size: 1rem;
             font-weight: 600;
             color: var(--color-primary);
-            letter-spacing: -0.01em;
         }
 
         .photo-upload {
@@ -172,7 +173,6 @@
             transition: all 0.2s ease;
             background: var(--color-bg);
             margin-bottom: 12px;
-            -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
 
@@ -201,90 +201,6 @@
 
         .upload-placeholder p {
             font-size: 0.875rem;
-            font-weight: 400;
-        }
-
-        .meal-input {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            background: var(--color-surface);
-            color: var(--color-primary);
-            -webkit-appearance: none;
-            -webkit-border-radius: 6px;
-        }
-
-        .meal-input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-        }
-
-        .meal-input::placeholder {
-            color: var(--color-tertiary);
-        }
-
-        textarea.meal-input {
-            resize: vertical;
-            min-height: 70px;
-            -webkit-appearance: none;
-            line-height: 1.5;
-        }
-
-        .export-section {
-            text-align: center;
-            margin-top: 48px;
-            animation: fadeIn 0.6s ease 0.3s backwards;
-        }
-
-        .export-button {
-            padding: 14px 32px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            background: var(--color-primary);
-            color: var(--color-surface);
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.01em;
-            -webkit-appearance: none;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .export-button:hover {
-            opacity: 0.85;
-        }
-
-        .export-button:active {
-            transform: scale(0.98);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .delete-photo {
@@ -304,15 +220,63 @@
             justify-content: center;
             transition: all 0.2s ease;
             z-index: 10;
-            backdrop-filter: blur(4px);
         }
 
         .delete-photo:hover {
             background: rgba(0, 0, 0, 0.9);
         }
 
-        .delete-photo:active {
-            transform: scale(0.95);
+        .meal-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            background: var(--color-surface);
+            color: var(--color-primary);
+            -webkit-appearance: none;
+            resize: vertical;
+            min-height: 70px;
+            line-height: 1.5;
+        }
+
+        .meal-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .meal-input::placeholder {
+            color: var(--color-tertiary);
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .export-button {
+            padding: 14px 32px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: var(--color-primary);
+            color: var(--color-surface);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+
+        .export-button:hover {
+            opacity: 0.85;
+        }
+
+        .export-button:active {
+            transform: scale(0.98);
         }
 
         input[type="file"] {
@@ -327,10 +291,6 @@
             h1 {
                 font-size: 1.5rem;
             }
-
-            .subtitle {
-                font-size: 0.8125rem;
-            }
             
             .meals-grid {
                 grid-template-columns: 1fr;
@@ -339,12 +299,7 @@
             
             .day-button {
                 min-width: 85px;
-                font-size: 0.8125rem;
                 padding: 10px 12px;
-            }
-
-            .meal-card {
-                padding: 16px;
             }
 
             .export-button {
@@ -360,42 +315,33 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Registrar Service Worker para funcionalidad offline
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const swCode = `
-                    const CACHE_NAME = 'diario-comida-v1';
-                    
-                    self.addEventListener('install', (event) => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME).then((cache) => {
-                                return cache.addAll(['/']);
-                            })
-                        );
-                    });
-                    
-                    self.addEventListener('fetch', (event) => {
-                        event.respondWith(
-                            caches.match(event.request).then((response) => {
-                                return response || fetch(event.request);
-                            })
-                        );
-                    });
-                `;
+        // Generar fechas dinámicas comenzando desde hoy
+        const generarDiasSemana = () => {
+            const hoy = new Date();
+            const dias = [];
+            const nombresDias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            
+            for (let i = 0; i < 7; i++) {
+                const fecha = new Date(hoy);
+                fecha.setDate(hoy.getDate() + i);
                 
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
+                const nombreDia = nombresDias[fecha.getDay()];
+                const dia = fecha.getDate().toString().padStart(2, '0');
+                const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+                const año = fecha.getFullYear();
                 
-                navigator.serviceWorker.register(swUrl)
-                    .then(() => console.log('Service Worker registrado'))
-                    .catch(() => console.log('Service Worker no disponible'));
-            });
-        }
+                dias.push({
+                    key: `${año}-${mes}-${dia}`,
+                    nombre: nombreDia,
+                    fecha: `${dia}/${mes}`,
+                    fechaCompleta: `${dia}/${mes}/${año}`
+                });
+            }
+            
+            return dias;
+        };
 
-        const DIAS = [
-            'Lunes', 'Martes', 'Miércoles', 'Jueves', 
-            'Viernes', 'Sábado', 'Domingo'
-        ];
+        const DIAS = generarDiasSemana();
 
         const COMIDAS = [
             { id: 'desayuno', nombre: 'Desayuno', icono: '🌅' },
@@ -405,21 +351,44 @@
         ];
 
         function App() {
-            const [diaActual, setDiaActual] = useState('Lunes');
-            const [mostrarBotonInstalar, setMostrarBotonInstalar] = useState(false);
-            const [eventoInstalar, setEventoInstalar] = useState(null);
-            
+            const [diaActual, setDiaActual] = useState(DIAS[0].key);
             const [datos, setDatos] = useState(() => {
-                const guardado = localStorage.getItem('diarioComida');
-                if (guardado) {
-                    return JSON.parse(guardado);
+                try {
+                    const guardado = localStorage.getItem('diarioComida');
+                    if (guardado) {
+                        const parsed = JSON.parse(guardado);
+                        
+                        // Limpiar datos antiguos (más de 30 días)
+                        const hoy = new Date();
+                        const hace30Dias = new Date(hoy);
+                        hace30Dias.setDate(hoy.getDate() - 30);
+                        
+                        const datosLimpios = {};
+                        Object.keys(parsed).forEach(key => {
+                            const [año, mes, dia] = key.split('-').map(Number);
+                            const fechaKey = new Date(año, mes - 1, dia);
+                            
+                            // Mantener solo datos recientes
+                            if (fechaKey >= hace30Dias) {
+                                datosLimpios[key] = parsed[key];
+                            }
+                        });
+                        
+                        // Verificar si tiene la estructura correcta
+                        if (Object.keys(datosLimpios).length > 0) {
+                            return datosLimpios;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error al cargar datos:', e);
                 }
                 
+                // Crear estructura inicial
                 const inicial = {};
                 DIAS.forEach(dia => {
-                    inicial[dia] = {};
+                    inicial[dia.key] = {};
                     COMIDAS.forEach(comida => {
-                        inicial[dia][comida.id] = {
+                        inicial[dia.key][comida.id] = {
                             foto: null,
                             notas: ''
                         };
@@ -429,223 +398,184 @@
             });
 
             useEffect(() => {
-                localStorage.setItem('diarioComida', JSON.stringify(datos));
+                try {
+                    // Asegurar que existen las estructuras para los días actuales
+                    setDatos(prev => {
+                        const nuevo = { ...prev };
+                        let cambios = false;
+                        
+                        DIAS.forEach(dia => {
+                            if (!nuevo[dia.key]) {
+                                nuevo[dia.key] = {};
+                                cambios = true;
+                            }
+                            COMIDAS.forEach(comida => {
+                                if (!nuevo[dia.key][comida.id]) {
+                                    nuevo[dia.key][comida.id] = { foto: null, notas: '' };
+                                    cambios = true;
+                                }
+                            });
+                        });
+                        
+                        return cambios ? nuevo : prev;
+                    });
+                    
+                    localStorage.setItem('diarioComida', JSON.stringify(datos));
+                } catch (e) {
+                    console.error('Error al guardar datos:', e);
+                }
             }, [datos]);
 
-            useEffect(() => {
-                // Detectar si se puede instalar la app
-                const handleBeforeInstall = (e) => {
-                    e.preventDefault();
-                    setEventoInstalar(e);
-                    setMostrarBotonInstalar(true);
-                };
-
-                window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-
-                // Detectar si ya está instalada (Safari iOS)
-                const esStandalone = window.matchMedia('(display-mode: standalone)').matches 
-                    || window.navigator.standalone 
-                    || document.referrer.includes('android-app://');
+            const manejarFoto = (diaKey, comidaId, archivo) => {
+                if (!archivo) return;
                 
-                if (esStandalone) {
-                    setMostrarBotonInstalar(false);
-                }
-
-                return () => {
-                    window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
-                };
-            }, []);
-
-            const instalarApp = async () => {
-                if (!eventoInstalar) return;
-                
-                eventoInstalar.prompt();
-                const { outcome } = await eventoInstalar.userChoice;
-                
-                if (outcome === 'accepted') {
-                    setMostrarBotonInstalar(false);
-                }
-                
-                setEventoInstalar(null);
-            };
-
-            const manejarFoto = (dia, comidaId, archivo) => {
-                if (archivo) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        setDatos(prev => ({
-                            ...prev,
-                            [dia]: {
-                                ...prev[dia],
-                                [comidaId]: {
-                                    ...prev[dia][comidaId],
-                                    foto: reader.result
-                                }
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setDatos(prev => ({
+                        ...prev,
+                        [diaKey]: {
+                            ...prev[diaKey],
+                            [comidaId]: {
+                                ...prev[diaKey][comidaId],
+                                foto: reader.result
                             }
-                        }));
-                    };
-                    reader.readAsDataURL(archivo);
-                }
+                        }
+                    }));
+                };
+                reader.onerror = () => {
+                    console.error('Error al leer la imagen');
+                    alert('Error al cargar la imagen. Intenta nuevamente.');
+                };
+                reader.readAsDataURL(archivo);
             };
 
-            const eliminarFoto = (dia, comidaId) => {
+            const eliminarFoto = (diaKey, comidaId) => {
                 setDatos(prev => ({
                     ...prev,
-                    [dia]: {
-                        ...prev[dia],
+                    [diaKey]: {
+                        ...prev[diaKey],
                         [comidaId]: {
-                            ...prev[dia][comidaId],
+                            ...prev[diaKey][comidaId],
                             foto: null
                         }
                     }
                 }));
             };
 
-            const manejarNotas = (dia, comidaId, texto) => {
+            const manejarNotas = (diaKey, comidaId, texto) => {
                 setDatos(prev => ({
                     ...prev,
-                    [dia]: {
-                        ...prev[dia],
+                    [diaKey]: {
+                        ...prev[diaKey],
                         [comidaId]: {
-                            ...prev[dia][comidaId],
+                            ...prev[diaKey][comidaId],
                             notas: texto
                         }
                     }
                 }));
             };
 
-            const exportarPDF = async () => {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                let yPos = 25;
-                let paginaActual = 1;
-                const margenIzq = 20;
-                const margenDer = 190;
-                
-                // Título principal - estilo minimalista
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(20);
-                doc.setTextColor(0, 0, 0);
-                doc.text('Diario Alimenticio', margenIzq, yPos);
-                yPos += 12;
-
-                // Línea divisoria sutil
-                doc.setDrawColor(230, 230, 230);
-                doc.setLineWidth(0.3);
-                doc.line(margenIzq, yPos, margenDer, yPos);
-                yPos += 12;
-
-                // Iterar por todos los días
-                for (const dia of DIAS) {
-                    // Verificar si hay contenido para este día
-                    const tieneContenido = COMIDAS.some(comida => {
-                        const entry = datos[dia][comida.id];
-                        return entry.foto || entry.notas;
-                    });
-
-                    if (!tieneContenido) continue;
-
-                    // Nueva página para cada día (excepto si es el inicio)
-                    if (yPos > 35) {
-                        doc.addPage();
-                        yPos = 25;
-                        paginaActual++;
-                    }
-
-                    // Título del día - minimalista
-                    doc.setFont('helvetica', 'bold');
-                    doc.setFontSize(16);
-                    doc.setTextColor(0, 0, 0);
-                    doc.text(dia, margenIzq, yPos);
-                    yPos += 10;
+            const exportarPDF = () => {
+                try {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
                     
-                    // Línea divisoria
+                    let yPos = 25;
+                    const margenIzq = 20;
+                    const margenDer = 190;
+                    
+                    // Título
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(20);
+                    doc.text('Diario Alimenticio', margenIzq, yPos);
+                    yPos += 12;
+                    
                     doc.setDrawColor(230, 230, 230);
                     doc.setLineWidth(0.3);
                     doc.line(margenIzq, yPos, margenDer, yPos);
-                    yPos += 10;
-                    
-                    doc.setFont('helvetica', 'normal');
+                    yPos += 12;
 
-                    // Iterar por comidas del día
-                    for (const comida of COMIDAS) {
-                        const entry = datos[dia][comida.id];
-                        
-                        // Saltar si no hay contenido
-                        if (!entry.foto && !entry.notas) continue;
+                    // Iterar días
+                    for (const dia of DIAS) {
+                        const tieneContenido = COMIDAS.some(comida => {
+                            const entry = datos[dia.key]?.[comida.id];
+                            return entry?.foto || entry?.notas;
+                        });
 
-                        // Calcular espacio necesario
-                        const espacioNecesario = 12 + (entry.foto ? 65 : 0) + (entry.notas ? 20 : 0);
-                        
-                        // Nueva página si no hay espacio
-                        if (yPos + espacioNecesario > 275) {
+                        if (!tieneContenido) continue;
+
+                        if (yPos > 35) {
                             doc.addPage();
                             yPos = 25;
-                            paginaActual++;
                         }
 
-                        // Nombre de la comida - sin emoji en PDF
                         doc.setFont('helvetica', 'bold');
-                        doc.setFontSize(12);
-                        doc.setTextColor(0, 0, 0);
-                        doc.text(comida.nombre, margenIzq, yPos);
-                        yPos += 8;
-                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(16);
+                        doc.text(`${dia.nombre} ${dia.fecha}`, margenIzq, yPos);
+                        yPos += 10;
+                        
+                        doc.setDrawColor(230, 230, 230);
+                        doc.line(margenIzq, yPos, margenDer, yPos);
+                        yPos += 10;
 
-                        // Agregar foto si existe
-                        if (entry.foto) {
-                            try {
-                                const imgAncho = 80;
-                                const imgAlto = 60;
-                                
-                                doc.addImage(entry.foto, 'JPEG', margenIzq, yPos, imgAncho, imgAlto, undefined, 'FAST');
-                                yPos += imgAlto + 6;
-                            } catch (e) {
-                                console.error('Error al agregar imagen:', e);
-                                doc.setFontSize(9);
-                                doc.setTextColor(160, 160, 160);
-                                doc.text('[Imagen no disponible]', margenIzq, yPos);
-                                yPos += 6;
+                        for (const comida of COMIDAS) {
+                            const entry = datos[dia.key]?.[comida.id];
+                            if (!entry?.foto && !entry?.notas) continue;
+
+                            const espacioNecesario = 12 + (entry.foto ? 65 : 0) + (entry.notas ? 20 : 0);
+                            
+                            if (yPos + espacioNecesario > 275) {
+                                doc.addPage();
+                                yPos = 25;
                             }
+
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(12);
+                            doc.text(comida.nombre, margenIzq, yPos);
+                            yPos += 8;
+
+                            if (entry.foto) {
+                                try {
+                                    doc.addImage(entry.foto, 'JPEG', margenIzq, yPos, 80, 60, undefined, 'FAST');
+                                    yPos += 66;
+                                } catch (e) {
+                                    console.error('Error con imagen:', e);
+                                    yPos += 6;
+                                }
+                            }
+
+                            if (entry.notas) {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(10);
+                                const lineas = doc.splitTextToSize(entry.notas, margenDer - margenIzq);
+                                doc.text(lineas, margenIzq, yPos);
+                                yPos += lineas.length * 5 + 8;
+                            }
+
+                            yPos += 4;
                         }
 
-                        // Agregar notas si existen
-                        if (entry.notas) {
-                            doc.setFontSize(10);
-                            doc.setTextColor(60, 60, 60);
-                            const lineas = doc.splitTextToSize(entry.notas, margenDer - margenIzq);
-                            doc.text(lineas, margenIzq, yPos);
-                            yPos += lineas.length * 5 + 8;
-                        }
-
-                        yPos += 4;
+                        yPos += 8;
                     }
 
-                    yPos += 8;
-                }
+                    const totalPaginas = doc.getNumberOfPages();
+                    for (let i = 1; i <= totalPaginas; i++) {
+                        doc.setPage(i);
+                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(8);
+                        doc.setTextColor(180, 180, 180);
+                        doc.text(`${i} / ${totalPaginas}`, 105, 287, { align: 'center' });
+                    }
 
-                // Si no hay contenido en ningún día
-                if (paginaActual === 1 && yPos <= 47) {
-                    doc.setFont('helvetica', 'normal');
-                    doc.setFontSize(11);
-                    doc.setTextColor(150, 150, 150);
-                    doc.text('Aún no hay entradas en el diario.', margenIzq, 80);
-                    doc.text('Comienza a agregar tus comidas.', margenIzq, 92);
+                    const hoy = new Date();
+                    const d = hoy.getDate().toString().padStart(2, '0');
+                    const m = (hoy.getMonth() + 1).toString().padStart(2, '0');
+                    const a = hoy.getFullYear();
+                    doc.save(`diario-${d}-${m}-${a}.pdf`);
+                } catch (e) {
+                    console.error('Error al exportar PDF:', e);
+                    alert('Error al generar el PDF. Intenta nuevamente.');
                 }
-
-                // Agregar número de página - minimalista
-                const totalPaginas = doc.getNumberOfPages();
-                for (let i = 1; i <= totalPaginas; i++) {
-                    doc.setPage(i);
-                    doc.setFont('helvetica', 'normal');
-                    doc.setFontSize(8);
-                    doc.setTextColor(180, 180, 180);
-                    doc.text(`${i} / ${totalPaginas}`, 105, 287, { align: 'center' });
-                }
-
-                // Guardar PDF
-                doc.save(`diario-alimenticio-${new Date().toLocaleDateString('es-AR').replace(/\//g, '-')}.pdf`);
             };
 
             return (
@@ -653,90 +583,77 @@
                     <header>
                         <h1>Mi Diario Alimenticio</h1>
                         <p className="subtitle">Registra tus comidas día a día</p>
-                        
-                        {/* Banner de instalación para iOS */}
-                        {!window.navigator.standalone && /iPhone|iPad|iPod/.test(navigator.userAgent) && (
-                            <div style={{
-                                marginTop: '20px',
-                                padding: '16px',
-                                background: 'var(--color-surface)',
-                                border: '1px solid var(--color-border)',
-                                borderRadius: '8px',
-                                fontSize: '0.875rem',
-                                color: 'var(--color-secondary)',
-                                textAlign: 'left'
-                            }}>
-                                <div style={{ fontWeight: '600', marginBottom: '8px', color: 'var(--color-primary)' }}>
-                                    📱 Instalar como App
-                                </div>
-                                <div style={{ lineHeight: '1.6' }}>
-                                    Toca <strong>Compartir</strong> <svg style={{display: 'inline', width: '14px', height: '14px', verticalAlign: 'middle'}} viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12l7-7 7 7"/></svg> y luego <strong>"Agregar a pantalla de inicio"</strong> para usar esta app sin conexión.
-                                </div>
-                            </div>
-                        )}
                     </header>
 
                     <div className="week-selector">
                         {DIAS.map(dia => (
                             <button
-                                key={dia}
-                                className={`day-button ${diaActual === dia ? 'active' : ''}`}
-                                onClick={() => setDiaActual(dia)}
+                                key={dia.key}
+                                className={`day-button ${diaActual === dia.key ? 'active' : ''}`}
+                                onClick={() => setDiaActual(dia.key)}
                             >
-                                {dia}
+                                <div className="day-label">{dia.nombre}</div>
+                                <div className="day-date">{dia.fecha}</div>
                             </button>
                         ))}
                     </div>
 
                     <div className="meals-grid">
-                        {COMIDAS.map(comida => (
-                            <div key={comida.id} className="meal-card">
-                                <div className="meal-header">
-                                    <span className="meal-icon">{comida.icono}</span>
-                                    <h3 className="meal-title">{comida.nombre}</h3>
-                                </div>
+                        {COMIDAS.map(comida => {
+                            const entry = datos[diaActual]?.[comida.id] || { foto: null, notas: '' };
+                            
+                            return (
+                                <div key={comida.id} className="meal-card">
+                                    <div className="meal-header">
+                                        <span className="meal-icon">{comida.icono}</span>
+                                        <h3 className="meal-title">{comida.nombre}</h3>
+                                    </div>
 
-                                <label className="photo-upload">
-                                    {datos[diaActual][comida.id].foto ? (
-                                        <>
-                                            <img 
-                                                src={datos[diaActual][comida.id].foto} 
-                                                alt={comida.nombre}
-                                            />
-                                            <button
-                                                className="delete-photo"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    eliminarFoto(diaActual, comida.id);
-                                                }}
-                                            >
-                                                ×
-                                            </button>
-                                        </>
-                                    ) : (
-                                        <div className="upload-placeholder">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            <p>Toca para añadir foto</p>
-                                        </div>
-                                    )}
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={(e) => manejarFoto(diaActual, comida.id, e.target.files[0])}
+                                    <label className="photo-upload">
+                                        {entry.foto ? (
+                                            <>
+                                                <img src={entry.foto} alt={comida.nombre} />
+                                                <button
+                                                    className="delete-photo"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        eliminarFoto(diaActual, comida.id);
+                                                    }}
+                                                >
+                                                    ×
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <div className="upload-placeholder">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <p>Toca para añadir foto</p>
+                                            </div>
+                                        )}
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(e) => {
+                                                if (e.target.files?.[0]) {
+                                                    manejarFoto(diaActual, comida.id, e.target.files[0]);
+                                                }
+                                                e.target.value = '';
+                                            }}
+                                        />
+                                    </label>
+
+                                    <textarea
+                                        className="meal-input"
+                                        placeholder="¿Qué comiste? Añade notas aquí..."
+                                        value={entry.notas}
+                                        onChange={(e) => manejarNotas(diaActual, comida.id, e.target.value)}
                                     />
-                                </label>
-
-                                <textarea
-                                    className="meal-input"
-                                    placeholder="¿Qué comiste? Añade notas aquí..."
-                                    value={datos[diaActual][comida.id].notas}
-                                    onChange={(e) => manejarNotas(diaActual, comida.id, e.target.value)}
-                                />
-                            </div>
-                        ))}
+                                </div>
+                            );
+                        })}
                     </div>
 
                     <div className="export-section">
@@ -752,3 +669,4 @@
     </script>
 </body>
 </html>
+
